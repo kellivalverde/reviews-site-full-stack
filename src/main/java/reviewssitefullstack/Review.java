@@ -7,10 +7,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
-
-
-
-
 @Entity
 public class Review {
 
@@ -19,9 +15,8 @@ public class Review {
 	private long id; // primary key --> made by JPA
 	private String title;
 	private String imageUrl;
-	private String content; 
+	private String content;
 	private String date;
-
 
 	@ManyToMany(mappedBy = "reviews") // because topics is not the owner
 	private Collection<Category> categories;
@@ -34,13 +29,22 @@ public class Review {
 		return title;
 	}
 
+	public String getImageUrl() {
+		return imageUrl;
+	}
+
+	public String getContent() {
+		return content;
+	}
+
+	public String getDate() {
+		return date;
+	}
 
 	public Collection<Category> getCategories() {
 		return categories;
 	}
 
-	
-	
 	// default constructor required by JPA
 	public Review() {
 
@@ -49,15 +53,14 @@ public class Review {
 	public Review(String name) {
 		this.title = name;
 	}
-	
-	public Review(long id, String title, String imageUrl, String content, String date, Category...categories) {
+
+	public Review(long id, String title, String imageUrl, String content, String date, Category... categories) {
 		this.id = id;
 		this.title = title;
 		this.imageUrl = imageUrl;
 		this.content = content;
 		this.date = date;
 	}
-
 
 	// Source -> Generate hashCode() and equals()
 	// JPA needs this so it knows how to assign the id --> must to for every entity
