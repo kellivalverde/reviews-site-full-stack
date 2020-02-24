@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>My Beer Reviews</title>
+</head>
+
+<body>
+
+    <header>
+        <h1>My Beer Reviews</h1>
+    </header>
+
+    <main>
+        <ul>
+            <li th:each="review: ${reviewsModel}"><a th:href="|/show-reviews/${review.id}|"
+                    th:text="${review.title}"></a></li>
+        </ul>
+    </main>
+
+    <footer>
+        <small>&copy WCCI 2020</small>
+    </footer>
+
+</body>
+</html>
