@@ -64,7 +64,7 @@ public class ReviewControllerMockMVCTest {
 	}
 
 	
-	//List of Reviews are on /category
+	//List of Reviews are on /category - > maybe move to Category controller? 
 //	@Test
 //	public void shouldPutSingleReviewIntoModel() throws Exception {
 //		when(reviewRepo.findById(42L)).thenReturn(Optional.of(review));

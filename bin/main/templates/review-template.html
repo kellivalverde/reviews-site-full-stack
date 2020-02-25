@@ -15,8 +15,10 @@
 
     <main>
         <img th:src="${reviewModel.imageUrl}">
+       <div class="details">
         <p th:text="${reviewModel.content}"></p>
         <p th:text="${reviewModel.date}"></p>
+       </div>
     </main>
 
     <footer>
