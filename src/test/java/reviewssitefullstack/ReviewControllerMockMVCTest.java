@@ -48,43 +48,45 @@ public class ReviewControllerMockMVCTest {
 	public void shouldRouteToSingleReviewView() throws Exception {
 		long arbitraryReviewId = 42;
 		when(reviewRepo.findById(arbitraryReviewId)).thenReturn(Optional.of(review));
-		mvc.perform(get("/review?id=42")).andExpect(view().name(is("review")));
+		mvc.perform(get("/review/42")).andExpect(view().name(is("review-template")));
 	}
 
 	@Test
 	public void shouldBeOkForSingleReview() throws Exception {
 		long arbitraryReviewId = 42;
 		when(reviewRepo.findById(arbitraryReviewId)).thenReturn(Optional.of(review));
-		mvc.perform(get("/review?id=42")).andExpect(status().isOk());
+		mvc.perform(get("/review/42")).andExpect(status().isOk());
 	}
 
 	@Test
 	public void shouldNotBeOkForSingleReview() throws Exception {
-		mvc.perform(get("/review?id=42")).andExpect(status().isNotFound());
+		mvc.perform(get("/review/42")).andExpect(status().isNotFound());
 	}
 
-	@Test
-	public void shouldPutSingleReviewIntoModel() throws Exception {
-		when(reviewRepo.findById(42L)).thenReturn(Optional.of(review));
-		mvc.perform(get("/review?id=42")).andExpect(model().attribute("reviews", is(review)));
-	} // or model named "reviewModel"
-
-	@Test
-	public void shouldRouteToAllReviewView() throws Exception {
-		mvc.perform(get("/reviews")).andExpect(view().name(is("reviews"))); // hits our template
-	} // was "/show-courses" in previous demo
-
-	@Test
-	public void shouldBeOkForAllReviews() throws Exception {
-		mvc.perform(get("/reviews")).andExpect(status().isOk());
-	}
-
-	@Test
-	public void shouldPutAllReviewsIntoModel() throws Exception {
-		Collection<Review> allReviews = Arrays.asList(review, review2);
-		when(reviewRepo.findAll()).thenReturn(allReviews);
-
-		mvc.perform(get("/reviews")).andExpect(model().attribute("reviews", is(allReviews)));
-	} // "reviewsModel"
+	
+	//List of Reviews are on /category
+//	@Test
+//	public void shouldPutSingleReviewIntoModel() throws Exception {
+//		when(reviewRepo.findById(42L)).thenReturn(Optional.of(review));
+//		mvc.perform(get("/review?id=42")).andExpect(model().attribute("reviews", is(review)));
+//	} // or model named "reviewModel"
+//
+//	@Test
+//	public void shouldRouteToAllReviewView() throws Exception {
+//		mvc.perform(get("/reviews")).andExpect(view().name(is("reviews"))); // hits our template
+//	} // was "/show-courses" in previous demo
+//
+//	@Test
+//	public void shouldBeOkForAllReviews() throws Exception {
+//		mvc.perform(get("/reviews")).andExpect(status().isOk());
+//	}
+//
+//	@Test
+//	public void shouldPutAllReviewsIntoModel() throws Exception {
+//		Collection<Review> allReviews = Arrays.asList(review, review2);
+//		when(reviewRepo.findAll()).thenReturn(allReviews);
+//
+//		mvc.perform(get("/category")).andExpect(model().attribute("category", is(allReviews)));
+//	} // "reviewsModel"
 
 }

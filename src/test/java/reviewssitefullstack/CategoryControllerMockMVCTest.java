@@ -52,30 +52,30 @@ public class CategoryControllerMockMVCTest {
 	public void shouldRouteToSingleCategoryView() throws Exception {
 		long arbitraryCategoryId = 1;
 		when(categoryRepo.findById(arbitraryCategoryId)).thenReturn(Optional.of(category));
-		mvc.perform(get("/category?id=1")).andExpect(view().name(is("category")));
+		mvc.perform(get("/category/1")).andExpect(view().name(is("single-category-template")));
 	}
 
 	@Test
 	public void shouldBeOkForSingleCategory() throws Exception {
 		long arbitraryCategoryId = 1;
 		when(categoryRepo.findById(arbitraryCategoryId)).thenReturn(Optional.of(category));
-		mvc.perform(get("/category?id=1")).andExpect(status().isOk());
+		mvc.perform(get("/category/1")).andExpect(status().isOk());
 	}
 
 	@Test
 	public void shouldNotBeOkForSingleCategory() throws Exception {
-		mvc.perform(get("/category?id=1")).andExpect(status().isNotFound());
+		mvc.perform(get("/category/1")).andExpect(status().isNotFound());
 	}
 
 	@Test
 	public void shouldPutSingleCategoryIntoModel() throws Exception {
 		when(categoryRepo.findById(1L)).thenReturn(Optional.of(category));
-		mvc.perform(get("/category?id=1")).andExpect(model().attribute("categoryModel", is(category)));
+		mvc.perform(get("/category/1")).andExpect(model().attribute("categoryModel", is(category)));
 	}
 
 	@Test
 	public void shouldRouteToAllCategoryView() throws Exception {
-		mvc.perform(get("/categories")).andExpect(view().name(is("categories"))); // hits our template
+		mvc.perform(get("/categories")).andExpect(view().name(is("categories-template"))); // hits our template
 	} // was "/show-categories" in previous demo
 
 	@Test
