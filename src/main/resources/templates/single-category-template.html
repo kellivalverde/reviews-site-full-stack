@@ -12,20 +12,25 @@
 <body>
 
     <header>
-        <h1><span th:text="${categoryModel.name}"></span> - My Beer Reviews</h1>
+        <h1><span th:text="${categoryModel.name}"></span>: Reviews</h1>
 	<div th:text="${categoryModel.description}"></div>
     </header>
 
     <main>
-        <ul> 
-            <li th:each="review: ${categoryModel.reviews}"><a th:href="|/review/${review.id}|"
+     
+        <section class="beer-list">
+        <h2>
+            <ul> 
+                <li th:each="review: ${categoryModel.reviews}"><a th:href="|/review/${review.id}|"
                     th:text="${review.title}"></a></li>
-        </ul>
+            </ul>
+        </h2>
+        </section>
     </main>
 
     <footer>
         <p><a href="/categories">back to All Categories</a></p>
-        <small>&copy WCCI 2020</small>
+        <small>&copy WCCI 2020 - Kelli Valverde</small>
     </footer>
 
 </body>

@@ -13,11 +13,12 @@
       margin: 0;
       background-repeat: no-repeat;
       background-attachment: fixed;
-      background-image: linear-gradient(cornflowerblue, white);
+      background-image: linear-gradient(gold,bisque);
   }
   /* ****  CONTAINER  **** */
   
   .container {
+    font-family: sans-serif;
       align-items: center;
       height: 20rem;
       color: #333;
@@ -25,10 +26,73 @@
       border: 10px;
       padding: 0;
   }
-  
+  header {
+    font-size: 2em;
+    color: chocolate;
+    padding: 2em 0;
+}
+
+header span {
+    font-size: 1em;
+    line-height: 1em;
+    color: chocolate;
+}
+
   header,
   .container {
       margin: 0 auto;
       max-width: 1024px;
+      text-align: center;
+  }
+
+  .beer-list a {
+    font-size: 1em;
+    line-height: 1em;
+    color: chocolate;
+    display: flex;
+    align-content: center;
+    justify-content: space-evenly;
+
+}
+
+.beer-list ul {
+    font-size: 1em;
+    line-height: 1em;
+    font-weight: bold;
+    align-self: start;
+    text-decoration: none;
+}
+
+.beer-list a:link {
+    color: chocolate;
+    text-decoration: none;
+  }
+
+.beer-list a:hover {
+    font-weight: bold;
+    color: cornflowerblue;
+}
+
+.beer-list a.active {
+    font-weight: bold;
+    color: blueviolet;
+}
+
+
+.container img {
+    max-height: 500px;
+    height: 70%;
+    width: auto;
   }
   
+
+
+  footer {
+    margin: 0 auto;
+    margin-top: 2em;
+    margin-bottom: 1em;
+    width: 100%;
+    color: #333;
+    padding: 1em;
+    text-align: center;
+}

@@ -17,14 +17,18 @@
     </header>
 
     <main>
-        <ul> 
-            <li th:each="category: ${categoriesModel}"><a th:href="|/category/${category.id}|"
+        <h2>
+ 	     <section class="beer-list">
+            <ul> 
+                <li th:each="category: ${categoriesModel}"><a th:href="|/category/${category.id}|"
                     th:text="${category.name}"></a></li>
-        </ul>
+            </ul>
+        </section>
+        </h2>
     </main>
 
     <footer>
-        <small>&copy WCCI 2020</small>
+        <small>&copy WCCI 2020 - Kelli Valverde</small>
     </footer>
 
 </body>

@@ -8,7 +8,7 @@
     <title th:text="${reviewModel.title}">A review</title>
 </head>
 <body>
-
+    <div class="container">
     <header>
         <h1 th:text="${reviewModel.title}">A Review</h1>
     </header>
@@ -21,8 +21,8 @@
 
     <footer>
         <p><a th:href="|/category/${reviewModel.category.id}|">Back to List of Category Reviews</a></p>
-        <small>&copy WCCI 2020</small>
+        <small>&copy WCCI 2020 - Kelli Valverde</small>
     </footer>
-
+    </div>
 </body>
 </html>
