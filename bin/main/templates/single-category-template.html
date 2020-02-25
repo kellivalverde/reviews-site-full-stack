@@ -1,3 +1,26 @@
-<html>
-<h1>SingleCategory</h1>
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>My Beer Reviews</title>
+</head>
+
+<body>
+
+    <header>
+        <h1><span th:text="${categoryModel.name}"></span> - My Beer Reviews</h1>
+    </header>
+
+    <main>
+        <ul> 
+            <li th:each="review: ${categoryModel.reviews}"><a th:href="|/review/${review.id}|"
+                    th:text="${review.title}"></a></li>
+        </ul>
+    </main>
+
+    <footer>
+        <small>&copy WCCI 2020</small>
+    </footer>
+
+</body>
 </html>

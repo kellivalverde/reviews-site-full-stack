@@ -12,8 +12,8 @@
     </header>
 
     <main>
-        <ul>
-            <li th:each="review: ${reviewsModel}"><a th:href="|/show-reviews/${review.id}|"
+        <ul> 
+            <li th:each="review: ${reviewsModel}"><a th:href="|/review/${review.id}|"
                     th:text="${review.title}"></a></li>
         </ul>
     </main>

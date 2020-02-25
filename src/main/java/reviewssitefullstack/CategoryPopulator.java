@@ -1,5 +1,5 @@
 package reviewssitefullstack;
-
+//Mod 7 Graded Project 
 import javax.annotation.Resource;
 
 import org.springframework.boot.CommandLineRunner;
@@ -18,8 +18,8 @@ public class CategoryPopulator implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		// data
 		
-		Review java = new Review("Java");
-		java = reviewRepo.save(java);
+		Review ipaBeer = new Review("IPA Beer","/images/green-beer.jpg", "Content goes here", "Date");
+		ipaBeer = reviewRepo.save(ipaBeer);
 		
 		Review spring = new Review("Spring");
 		spring = reviewRepo.save(spring);
@@ -29,11 +29,14 @@ public class CategoryPopulator implements CommandLineRunner {
 		
 		
 		
-		Category java101 = new Category("Intro to Java", "Learn the fundamentals of Java Programming", java);
-		java101 = categoryRepo.save(java101);
+		Category ipa = new Category("IPAs", "Strong and hop-forward", ipaBeer);
+		ipa = categoryRepo.save(ipa);
 		
-		Category java102 = new Category("Advanced Java", "Learn how to test a JPA app", java, tdd);
+		Category java102 = new Category("Advanced Java", "Learn how to test a JPA app", spring, tdd);
 		java102 = categoryRepo.save(java102);
 		
+		tdd = reviewRepo.save(tdd);
+		spring = reviewRepo.save(spring);
+		ipaBeer = reviewRepo.save(ipaBeer);		
 	}	
 }

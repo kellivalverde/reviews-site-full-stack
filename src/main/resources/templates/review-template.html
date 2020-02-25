@@ -10,14 +10,13 @@
     </header>
 
     <main>
-        <img th:src="${reviewModel.imageUrl}"/>
-        <p th:text="${reviewModel.category}"></p>
+        <img th:src="${reviewModel.imageUrl}">
         <p th:text="${reviewModel.content}"></p>
         <p th:text="${reviewModel.date}"></p>
     </main>
 
     <footer>
-        <p><a href="/show-reviews">back to list of reviews</a></p>
+        <p><a th:href="|/category/${reviewModel.category.id}|">back to list of reviews</a></p>
         <small>&copy WCCI 2020</small>
     </footer>
 

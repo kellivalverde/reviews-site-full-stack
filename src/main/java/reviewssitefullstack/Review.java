@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Review {
@@ -18,8 +19,10 @@ public class Review {
 	private String content;
 	private String date;
 
-	@ManyToMany(mappedBy = "reviews") // because topics is not the owner
-	private Collection<Category> categories;
+	@ManyToOne // because topics is not the owner
+	// private Collection<Category> categories;
+
+	private Category category;
 
 	public long getId() {
 		return id;
@@ -41,10 +44,17 @@ public class Review {
 		return date;
 	}
 
-	public Collection<Category> getCategories() {
-		return categories;
+	// public Collection<Category> getCategories() {
+
+	public Category getCategory() {
+		return category;
 	}
 
+	public void setCategory(Category value) {
+		this.category = value;
+	}
+
+	
 	// default constructor required by JPA
 	public Review() {
 
@@ -53,15 +63,26 @@ public class Review {
 	public Review(String name) {
 		this.title = name;
 	}
-
-	public Review(long id, String title, String imageUrl, String content, String date, Category... categories) {
-		this.id = id;
+	
+	public Review(String title, String imageUrl, String content, String date) {
 		this.title = title;
 		this.imageUrl = imageUrl;
 		this.content = content;
 		this.date = date;
 	}
 
+	public Review(long id, String title, String imageUrl, String content, String date, Category category) {
+		this.id = id;
+		this.title = title;
+		this.imageUrl = imageUrl;
+		this.content = content;
+		this.date = date;
+		this.category = category;
+	}
+
+	
+	
+	
 	// Source -> Generate hashCode() and equals()
 	// JPA needs this so it knows how to assign the id --> must to for every entity
 
@@ -87,4 +108,5 @@ public class Review {
 		return true;
 	}
 
+	
 }

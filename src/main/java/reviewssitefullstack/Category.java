@@ -22,7 +22,7 @@ public class Category {
 	private String name;
 	private String description;
 
-	@ManyToMany
+	@OneToMany(mappedBy = "category")
 	private Collection<Review> reviews;
 
 	public long getId() {
@@ -50,6 +50,10 @@ public class Category {
 		this.description = description;
 		this.reviews = new HashSet<>(Arrays.asList(reviews)); // brings in a collection of reviews
 		// HasSet because we don't want duplicates, but it doesn't need to be in order
+		
+		for(Review review : reviews) {
+			review.setCategory(this);
+		}
 	}
 
 	// Source -> Generate hashCode() and equals()

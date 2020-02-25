@@ -1,3 +1,26 @@
-<html>
-<h1>SingleCategory</h1>
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>All Categories</title>
+</head>
+
+<body>
+
+    <header>
+        <h1>All Categories</h1>
+    </header>
+
+    <main>
+        <ul> 
+            <li th:each="category: ${categoriesModel}"><a th:href="|/category/${category.id}|"
+                    th:text="${category.name}"></a></li>
+        </ul>
+    </main>
+
+    <footer>
+        <small>&copy WCCI 2020</small>
+    </footer>
+
+</body>
 </html>
