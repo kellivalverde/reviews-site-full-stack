@@ -18,25 +18,34 @@ public class CategoryPopulator implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		// data
 		
-		Review ipaBeer = new Review("IPA Beer","/images/green-beer.jpg", "Content goes here", "Date");
+		
+		//each Review only has one category
+		Review ipaBeer = new Review("Revolution Anti-Hero IPA","/images/revolution-anti-hero.jpg", "Anti-Hero IPA Content goes here", "5/11/2019");
 		ipaBeer = reviewRepo.save(ipaBeer);
 		
-		Review spring = new Review("Spring");
-		spring = reviewRepo.save(spring);
+		Review stoutBeer = new Review("VooDoo Brewery: BBVDD Imperial Stout","/images/VooDoo-BBVD-beer.jpg", "BBVDD Imperial Stout Content goes here", "12/7/2019");
+		stoutBeer = reviewRepo.save(stoutBeer);
 		
-		Review tdd = new Review("TDD");
-		tdd = reviewRepo.save(tdd);
+		Review spaceMothBeer = new Review("Space Moth","/images/space-moth.jpg", "Space Moth Content goes here", "12/7/2019");
+		spaceMothBeer = reviewRepo.save(spaceMothBeer);
+				
+		Review wheatBeer = new Review("Lamplighter Group Theory Wheat Beer","/images/lamplighter-wheatbeer.jpg", "Group Theory Content goes here", "9/1/2019" );
+		wheatBeer = reviewRepo.save(wheatBeer);
 		
 		
+		//Categories can have multiple reviews
+		Category ipaCat = new Category("IPA Category", "Strong and hop-forward", ipaBeer);
+		ipaCat = categoryRepo.save(ipaCat);
 		
-		Category ipa = new Category("IPAs", "Strong and hop-forward", ipaBeer);
-		ipa = categoryRepo.save(ipa);
+		Category stoutCat = new Category("Stout Category", "Robust, smokey and sweet", stoutBeer, spaceMothBeer);
+		stoutCat = categoryRepo.save(stoutCat);
 		
-		Category java102 = new Category("Advanced Java", "Learn how to test a JPA app", spring, tdd);
-		java102 = categoryRepo.save(java102);
+		Category wheatCat = new Category("Wheat Beer Category", "Hazy and Light", wheatBeer);
+		wheatCat = categoryRepo.save(wheatCat);
 		
-		tdd = reviewRepo.save(tdd);
-		spring = reviewRepo.save(spring);
-		ipaBeer = reviewRepo.save(ipaBeer);		
+		reviewRepo.save(spaceMothBeer);
+		reviewRepo.save(wheatBeer);
+		reviewRepo.save(stoutBeer);
+		reviewRepo.save(ipaBeer);		
 	}	
 }

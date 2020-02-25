@@ -9,6 +9,7 @@
 
     <header>
         <h1><span th:text="${categoryModel.name}"></span> - My Beer Reviews</h1>
+	<div th:text="${categoryModel.description}"></div>
     </header>
 
     <main>
@@ -19,6 +20,7 @@
     </main>
 
     <footer>
+        <p><a href="/categories">back to All Categories</a></p>
         <small>&copy WCCI 2020</small>
     </footer>
 
