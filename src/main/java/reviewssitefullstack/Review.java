@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Review {
@@ -19,8 +20,8 @@ public class Review {
 	private String content;
 	private String date;
 
-	@ManyToOne // because topics is not the owner
-	// private Collection<Category> categories;
+	@OneToOne // because reviews is not the owner
+	//private Collection<Category> categories;
 
 	private Category category;
 

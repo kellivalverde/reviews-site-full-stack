@@ -18,12 +18,12 @@ public class ReviewController {
 	@Resource
 	ReviewRepository reviewRepo;
 	
-
-	@RequestMapping("/reviews") // end-point - > route must match html
-	public String findAllReviews(Model model) {
-		model.addAttribute("reviewsModel", reviewRepo.findAll());
-		return ("reviews-template");
-	}
+// replaced by Category page
+//	@RequestMapping("/reviews") // end-point - > route must match html
+//	public String findAllReviews(Model model) {
+//		model.addAttribute("reviewsModel", reviewRepo.findAll());
+//		return ("reviews-template");
+//	}
 
 	@RequestMapping("/review/{id}")
 	public String findOneReview(@PathVariable(value = "id") long id, Model model) throws ReviewNotFoundException {
@@ -33,7 +33,7 @@ public class ReviewController {
 			model.addAttribute("reviewModel", review.get()); // why plural?
 			//model.addAttribute("categories", categoryRepo.findByReviewsContains(review.get()));
 			
-			return "review-template"; // template for single category
+			return "review-template"; // template for single review
 		}
 		throw new ReviewNotFoundException();
 	}
