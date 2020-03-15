@@ -1,5 +1,6 @@
 package reviewssitefullstack.models; // Mod 7 Graded Project
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.persistence.Entity;
@@ -20,11 +21,11 @@ public class Review {
 	private String content;
 	private String date;
 
-	@OneToOne // because reviews is not the owner
-	//private Collection<Category> categories;
-
+	@ManyToOne
 	private Category category;
-	private Tag tag;
+	
+	@ManyToMany //(mappedBy = "reviews")
+	private Collection<Tag> tags = new ArrayList<Tag>();
 
 	public long getId() {
 		return id;
@@ -57,8 +58,8 @@ public class Review {
 	}
 	
 	
-	public Tag getTag() {
-		return tag;
+	public Collection<Tag> getTags() {
+		return tags;
 	}
 	
 
@@ -88,7 +89,10 @@ public class Review {
 		this.category = category;
 	}
 
-	
+	public void addTag(Tag tag) {
+		tags.add(tag);
+	}
+
 	
 	
 	// Source -> Generate hashCode() and equals()
@@ -116,5 +120,6 @@ public class Review {
 		return true;
 	}
 
+	
 	
 }

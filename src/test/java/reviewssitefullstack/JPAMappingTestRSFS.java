@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.Matchers.contains;
 import static org.hamcrest.Matchers.containsInAnyOrder;
 import static org.hamcrest.Matchers.greaterThan;
 import static org.junit.Assert.*;
@@ -21,8 +22,10 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import reviewssitefullstack.models.Category;
 import reviewssitefullstack.models.Review;
+import reviewssitefullstack.models.Tag;
 import reviewssitefullstack.repositories.CategoryRepository;
 import reviewssitefullstack.repositories.ReviewRepository;
+import reviewssitefullstack.repositories.TagRepository;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @DataJpaTest
@@ -38,6 +41,9 @@ public class JPAMappingTestRSFS {
 
 	@Resource
 	private CategoryRepository categoryRepo;
+
+	@Resource
+	private TagRepository tagRepo;
 
 	@Test
 	public void shouldSaveAndLoadReview() {
@@ -109,34 +115,67 @@ public class JPAMappingTestRSFS {
 		// Review ruby = reviewRepo.save(new Review("Ruby"));
 
 		Category ooLanguages = categoryRepo.save(new Category("OO Languages", "description", java));
-		Category advancedJava = categoryRepo.save(new Category("Adv Java", "Description", java));
-		// Category advancedRuby = categoryRepo.save(new Category("Adv Ruby",
-		// "Description",
-		// ruby));
-
+		
 		entityManager.flush();
 		entityManager.clear();
 
-		Collection<Category> categorysForReview = categoryRepo.findByReviewsContains(java);
+		Collection<Category> categoriesForReview = categoryRepo.findByReviewsContains(java);
 		// tied to our Reviews Collection
-		assertThat(categorysForReview, containsInAnyOrder(ooLanguages, advancedJava));
+		assertThat(categoriesForReview, containsInAnyOrder(ooLanguages));
 	}
 
-	// query
+	
+
+	// ****************** TAGS *******************
+
 	@Test
-	public void shouldFindCategorysForReviewById() {
-		Review ruby = reviewRepo.save(new Review("Ruby"));
-		long reviewId = ruby.getId(); // access that specific review
+	public void shouldSaveAndLoadSingleTag() {
+		Tag tag = tagRepo.save(new Tag("tag"));// pulls Review entity from review repository -->CRUD Repo
+		// saves
+		long tagId = tag.getId();
 
-		Category ooLanguages = categoryRepo.save(new Category("OO Languages", "description", ruby));
-		Category advancedRuby = categoryRepo.save(new Category("Adv Ruby", "Description", ruby));
-
-		entityManager.flush();
+		entityManager.flush(); // forces JPA to hit the database when we try to find it
 		entityManager.clear();
 
-		Collection<Category> categorysForReview = categoryRepo.findByReviewsId(reviewId); // own query - not CRUD's
-		assertThat(categorysForReview, containsInAnyOrder(ooLanguages, advancedRuby));
+		Optional<Tag> result = tagRepo.findById(tagId);
+		tag = result.get();
+		assertEquals(tag.getName(), "tag");
 
 	}
+	
+	@Test
+	public void shouldAddAndLoadTagToReview() {
+		Review lager = reviewRepo.save(new Review("lager"));
+		
+		Tag crisp = tagRepo.save(new Tag("crisp"));
+		
+		//adding to each other's lists
+		lager.addTag(crisp);
+		crisp.addReview(lager); // do same in populator
+		
+		entityManager.flush();
+		entityManager.clear();
+		
+		Collection<Tag> tagsForReview = tagRepo.findByReviewsContains(lager);
+		assertThat(tagsForReview, contains(crisp));
+				
+	}
 
+	@Test
+	public void shouldAddAndLoadReviewToTag() {
+		Review lager = reviewRepo.save(new Review("lager"));
+		
+		Tag crisp = tagRepo.save(new Tag("crisp"));
+		
+		//adding to each other's lists
+		lager.addTag(crisp);
+		crisp.addReview(lager);
+		
+		entityManager.flush();
+		entityManager.clear();
+		
+		Collection<Review> reviewForTag = reviewRepo.findByTagsContains(crisp);
+		assertThat(reviewForTag, contains(lager));
+				
+	}
 }
