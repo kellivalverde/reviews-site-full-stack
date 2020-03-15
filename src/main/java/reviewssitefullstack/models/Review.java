@@ -24,6 +24,7 @@ public class Review {
 	//private Collection<Category> categories;
 
 	private Category category;
+	private Tag tag;
 
 	public long getId() {
 		return id;
@@ -54,6 +55,12 @@ public class Review {
 	public void setCategory(Category value) {
 		this.category = value;
 	}
+	
+	
+	public Tag getTag() {
+		return tag;
+	}
+	
 
 	
 	// default constructor required by JPA

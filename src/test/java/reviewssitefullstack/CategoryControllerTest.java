@@ -1,4 +1,4 @@
-package reviewssitefullstack.controllers;
+package reviewssitefullstack;
 
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.verify;
@@ -15,18 +15,21 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.ui.Model;
 
-import reviewssitefullstack.controllers.ReviewController;
-import reviewssitefullstack.exceptions.ReviewNotFoundException;
+import reviewssitefullstack.controllers.CategoryController;
+import reviewssitefullstack.exceptions.CategoryNotFoundException;
 import reviewssitefullstack.models.Category;
 import reviewssitefullstack.models.Review;
 import reviewssitefullstack.repositories.CategoryRepository;
 import reviewssitefullstack.repositories.ReviewRepository;
 
-public class ReviewControllerTest {
+
+
+public class CategoryControllerTest {
 
 	@InjectMocks // gives us access to our controller
-	private ReviewController underTest;
+	private CategoryController underTest;
 
+	// mocking populator
 	@Mock
 	private Category category;
 	@Mock
@@ -50,21 +53,22 @@ public class ReviewControllerTest {
 	}
 
 	@Test
-	public void shouldAddSingleReviewToModel() throws ReviewNotFoundException {
-		long arbitraryReviewId = 1;
-		when(reviewRepo.findById(arbitraryReviewId)).thenReturn(Optional.of(review));
+	public void shouldAddSingleCategoryToModel() throws CategoryNotFoundException {
+		long arbitraryCategoryId = 1;
+		when(categoryRepo.findById(arbitraryCategoryId)).thenReturn(Optional.of(category));
 
-		underTest.findOneReview(arbitraryReviewId, model);
-		verify(model).addAttribute("reviewModel", review); // why plural?
+		underTest.findOneCategory(arbitraryCategoryId, model);
+		verify(model).addAttribute("categoryModel", category); // why plural?
 
 	}
 
 	@Test
-	public void shouldAddAllReviewsToModel() {
-		Collection<Review> allReviews = Arrays.asList(review, review2);
-		when(reviewRepo.findAll()).thenReturn(allReviews); // methods from CRUD Repo
+	public void shouldAddAllCategoriesToModel() {
+		Collection<Category> allCategories = Arrays.asList(category, category2);
+		when(categoryRepo.findAll()).thenReturn(allCategories); // methods from CRUD Repo
 
-		underTest.findAllReviews(model);
-		verify(model).addAttribute("reviews", allReviews);
+		underTest.findAllCategories(model);
+		verify(model).addAttribute("categoriesModel", allCategories);
 	}
+
 }
