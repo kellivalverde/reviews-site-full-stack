@@ -19,8 +19,10 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import reviewssitefullstack.Category;
-import reviewssitefullstack.Review;
+import reviewssitefullstack.models.Category;
+import reviewssitefullstack.models.Review;
+import reviewssitefullstack.repositories.CategoryRepository;
+import reviewssitefullstack.repositories.ReviewRepository;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @DataJpaTest

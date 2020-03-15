@@ -1,4 +1,4 @@
-package reviewssitefullstack; //Mod 7 Graded Project
+package reviewssitefullstack.models; //Mod 7 Graded Project
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -10,7 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
-import reviewssitefullstack.Review;
+import reviewssitefullstack.models.Review;
 
 @Entity
 public class Category {

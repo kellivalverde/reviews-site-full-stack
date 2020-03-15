@@ -1,4 +1,4 @@
-package reviewssitefullstack;  //Mod 7 Graded Project 
+package reviewssitefullstack.controllers;  //Mod 7 Graded Project 
 import java.util.Optional;
 
 import javax.annotation.Resource;
@@ -8,6 +8,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import reviewssitefullstack.exceptions.ReviewNotFoundException;
+import reviewssitefullstack.models.Review;
+import reviewssitefullstack.repositories.CategoryRepository;
+import reviewssitefullstack.repositories.ReviewRepository;
 
 
 

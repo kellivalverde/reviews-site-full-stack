@@ -1,4 +1,4 @@
-package reviewssitefullstack; // Mod 7 Graded Project
+package reviewssitefullstack.models; // Mod 7 Graded Project
 
 import java.util.Collection;
 

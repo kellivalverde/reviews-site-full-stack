@@ -1,4 +1,4 @@
-package reviewssitefullstack;
+package reviewssitefullstack.controllers;
 
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.verify;
@@ -14,6 +14,13 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.ui.Model;
+
+import reviewssitefullstack.controllers.ReviewController;
+import reviewssitefullstack.exceptions.ReviewNotFoundException;
+import reviewssitefullstack.models.Category;
+import reviewssitefullstack.models.Review;
+import reviewssitefullstack.repositories.CategoryRepository;
+import reviewssitefullstack.repositories.ReviewRepository;
 
 public class ReviewControllerTest {
 

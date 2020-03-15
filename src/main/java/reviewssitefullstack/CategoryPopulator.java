@@ -5,6 +5,11 @@ import javax.annotation.Resource;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+import reviewssitefullstack.models.Category;
+import reviewssitefullstack.models.Review;
+import reviewssitefullstack.repositories.CategoryRepository;
+import reviewssitefullstack.repositories.ReviewRepository;
+
 @Component
 public class CategoryPopulator implements CommandLineRunner {
 

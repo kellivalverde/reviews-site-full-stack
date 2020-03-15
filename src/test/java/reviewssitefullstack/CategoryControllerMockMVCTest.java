@@ -23,6 +23,12 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.ui.Model;
 
+import reviewssitefullstack.controllers.CategoryController;
+import reviewssitefullstack.models.Category;
+import reviewssitefullstack.models.Review;
+import reviewssitefullstack.repositories.CategoryRepository;
+import reviewssitefullstack.repositories.ReviewRepository;
+
 
 
 
