@@ -1,5 +1,6 @@
 package reviewssitefullstack.models; // Mod 7 Graded Project
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.persistence.Entity;
@@ -7,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -20,11 +22,14 @@ public class Review {
 	private String content;
 	private String date;
 
-	@OneToOne // because reviews is not the owner
-	//private Collection<Category> categories;
-
+	@ManyToOne
 	private Category category;
-	private Tag tag;
+	
+	@ManyToMany //(mappedBy = "reviews")
+	private Collection<Tag> tags = new ArrayList<Tag>();
+	
+	@OneToMany(mappedBy = "review")
+	private Collection<Comment> comments = new ArrayList<Comment>();
 
 	public long getId() {
 		return id;
@@ -57,8 +62,8 @@ public class Review {
 	}
 	
 	
-	public Tag getTag() {
-		return tag;
+	public Collection<Tag> getTags() {
+		return tags;
 	}
 	
 
@@ -88,8 +93,19 @@ public class Review {
 		this.category = category;
 	}
 
-	
-	
+	public void addTag(Tag tag) {
+		tags.add(tag);
+	}
+
+
+	public void addComment(Comment comment) {
+		comments.add(comment); //adds to list
+		comment.setReview(this); //sets relationship on other side - review
+	}
+
+	public Collection<Comment> getComments() {
+		return comments;
+	}
 	
 	// Source -> Generate hashCode() and equals()
 	// JPA needs this so it knows how to assign the id --> must to for every entity
@@ -116,5 +132,7 @@ public class Review {
 		return true;
 	}
 
+	
+	
 	
 }
