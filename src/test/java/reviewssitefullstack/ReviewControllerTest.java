@@ -48,7 +48,7 @@ public class ReviewControllerTest {
 		when(reviewRepo.findById(arbitraryReviewId)).thenReturn(Optional.of(review));
 
 		underTest.findOneReview(arbitraryReviewId, model);
-		verify(model).addAttribute("reviews", review); // why plural?
+		verify(model).addAttribute("reviewModel", review); // why plural?
 
 	}
 

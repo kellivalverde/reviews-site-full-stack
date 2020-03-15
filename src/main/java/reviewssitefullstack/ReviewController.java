@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
+
+
 @Controller
 public class ReviewController {
 	
@@ -37,4 +39,15 @@ public class ReviewController {
 		}
 		throw new ReviewNotFoundException();
 	}
+	
+	@RequestMapping("/reviews")
+	public String findAllReviews(Model model) {
+		Iterable<Review> reviews = reviewRepo.findAll();
+		model.addAttribute("reviews", reviews);
+				
+		return "reviews";	
+		
+	}
+	
+	
 }
