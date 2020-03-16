@@ -10,7 +10,7 @@ import reviewssitefullstack.models.Tag;
 
 public interface CommentRepository extends CrudRepository<Comment, Long> {
 
-	Collection<Comment> findByReviewsContains(Review review);
+	Collection<Comment> findByReviewContains(Review review);
 
 	
 

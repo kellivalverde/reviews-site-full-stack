@@ -8,7 +8,9 @@ import org.springframework.stereotype.Component;
 import reviewssitefullstack.models.Category;
 import reviewssitefullstack.models.Review;
 import reviewssitefullstack.repositories.CategoryRepository;
+import reviewssitefullstack.repositories.CommentRepository;
 import reviewssitefullstack.repositories.ReviewRepository;
+import reviewssitefullstack.repositories.TagRepository;
 
 @Component
 public class CategoryPopulator implements CommandLineRunner {
@@ -18,6 +20,12 @@ public class CategoryPopulator implements CommandLineRunner {
 
 	@Resource
 	private ReviewRepository reviewRepo;
+	
+	@Resource
+	private TagRepository tagRepo;
+	
+	@Resource
+	private CommentRepository commentRepo;
 
 	@Override
 	public void run(String... args) throws Exception {

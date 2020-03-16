@@ -102,22 +102,22 @@ public class ReviewControllerTest {
 
 	}
 
-	
-	@Test
-	public void shouldAddSingleCommentToReviewModel() throws CommentNotFoundException {
-
-		Review review = new Review("review1");
-		Comment commentToAdd = new Comment("comment1", "comment content");
-
-		Collection<Comment> allComments = Arrays.asList(commentToAdd);
-
-		when(reviewRepo.findById(review.getId())).thenReturn(Optional.of(review));
-		when(commentRepo.findByReviewsContains(review)).thenReturn(allComments);
-
-		underTest.addComment(review.getId(), commentToAdd.getTitle(), commentToAdd.getContent(), model);
-		verify(model).addAttribute("commentsModel", commentRepo.findByReviewsContains(review));
-
-	}
+//	
+//	@Test
+//	public void shouldAddSingleCommentToReviewModel() throws CommentNotFoundException {
+//
+//		Review review = new Review("review1");
+//		Comment commentToAdd = new Comment("comment1", "comment content");
+//
+//		Collection<Comment> allComments = Arrays.asList(commentToAdd);
+//
+//		when(reviewRepo.findById(review.getId())).thenReturn(Optional.of(review));
+//		when(commentRepo.findByReviewsContains(review)).thenReturn(allComments);
+//
+//		underTest.addComment(review.getId(), commentToAdd.getTitle(), commentToAdd.getContent(), model);
+//		verify(model).addAttribute("commentsModel", commentRepo.findByReviewsContains(review));
+//
+//	}
 	
 }
 

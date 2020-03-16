@@ -45,6 +45,8 @@ public class ReviewController {
 
 		if (review.isPresent()) {
 			model.addAttribute("reviewModel", review.get()); // why plural?
+			model.addAttribute("categoryModel", review.get().getCategory());
+			
 			// model.addAttribute("categories",
 			// categoryRepo.findByReviewsContains(review.get()));
 
@@ -95,7 +97,7 @@ public class ReviewController {
 		reviewRepo.save(review.get());
 		commentRepo.save(commentToAdd);
 		
-		model.addAttribute("commentsModel", commentRepo.findByReviewsContains(review.get()));
+		model.addAttribute("commentsModel", commentRepo.findByReviewContains(review.get()));
 	
 	
 		return "redirect:/review/{id}";
