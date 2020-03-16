@@ -11,4 +11,7 @@ public interface TagRepository extends CrudRepository<Tag, Long> {
 
 	Collection<Tag> findByReviewsContains(Review review);
 
+	Tag findByNameIgnoreCaseLike(String tagName);
+
+
 }

@@ -17,10 +17,13 @@ import org.springframework.ui.Model;
 
 import reviewssitefullstack.controllers.ReviewController;
 import reviewssitefullstack.exceptions.ReviewNotFoundException;
+import reviewssitefullstack.exceptions.TagNotFoundException;
 import reviewssitefullstack.models.Category;
 import reviewssitefullstack.models.Review;
+import reviewssitefullstack.models.Tag;
 import reviewssitefullstack.repositories.CategoryRepository;
 import reviewssitefullstack.repositories.ReviewRepository;
+import reviewssitefullstack.repositories.TagRepository;
 
 public class ReviewControllerTest {
 
@@ -38,9 +41,15 @@ public class ReviewControllerTest {
 	private Review review;
 	@Mock
 	private Review review2;
+	
 	@Mock
 	private ReviewRepository reviewRepo;
 
+	@Mock
+	private TagRepository tagRepo;
+	@Mock
+	private Tag tag;
+	
 	@Mock
 	private Model model;
 
@@ -69,10 +78,27 @@ public class ReviewControllerTest {
 	}
 	
 
-//	@Test
-//	public void shouldAddSingleTagToReviewModel() throws TagNotFoundException {
-//		List<Tag> tags = Arrays.asList(tag)
-//	}
+	@Test
+	public void shouldAddSingleTagToReviewModel() throws TagNotFoundException {
+		
+		Review review = new Review("review1");
+		Tag tagToAdd = new Tag("tag1");
+		
+		Collection<Tag> allTags = Arrays.asList(tagToAdd);
+
+		when(reviewRepo.findById(review.getId())).thenReturn(Optional.of(review));
+		when(tagRepo.findByReviewsContains(review)).thenReturn(allTags);
+		
+		
+		underTest.addTag(review.getId(), tagToAdd.getName(), model);
+		verify(model).addAttribute("tagsModel", tagRepo.findByReviewsContains(review)); 
+		
+		
+
+		
+		
+//		Collection<Tag> tags = Arrays.asList(tag);
+	}
 		
 	}
 
