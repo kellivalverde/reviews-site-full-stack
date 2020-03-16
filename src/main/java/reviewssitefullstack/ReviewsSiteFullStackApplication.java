@@ -9,5 +9,5 @@ public class ReviewsSiteFullStackApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(ReviewsSiteFullStackApplication.class, args);
 	}
-
+//got to http://localhost:8080/categories
 }

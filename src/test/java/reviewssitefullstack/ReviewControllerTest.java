@@ -16,12 +16,15 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.ui.Model;
 
 import reviewssitefullstack.controllers.ReviewController;
+import reviewssitefullstack.exceptions.CommentNotFoundException;
 import reviewssitefullstack.exceptions.ReviewNotFoundException;
 import reviewssitefullstack.exceptions.TagNotFoundException;
 import reviewssitefullstack.models.Category;
+import reviewssitefullstack.models.Comment;
 import reviewssitefullstack.models.Review;
 import reviewssitefullstack.models.Tag;
 import reviewssitefullstack.repositories.CategoryRepository;
+import reviewssitefullstack.repositories.CommentRepository;
 import reviewssitefullstack.repositories.ReviewRepository;
 import reviewssitefullstack.repositories.TagRepository;
 
@@ -41,7 +44,7 @@ public class ReviewControllerTest {
 	private Review review;
 	@Mock
 	private Review review2;
-	
+
 	@Mock
 	private ReviewRepository reviewRepo;
 
@@ -50,6 +53,12 @@ public class ReviewControllerTest {
 	@Mock
 	private Tag tag;
 	
+	@Mock
+	private CommentRepository commentRepo;
+	@Mock
+	private Comment comment;
+	
+
 	@Mock
 	private Model model;
 
@@ -76,30 +85,41 @@ public class ReviewControllerTest {
 		underTest.findAllReviews(model);
 		verify(model).addAttribute("reviews", allReviews);
 	}
-	
 
 	@Test
 	public void shouldAddSingleTagToReviewModel() throws TagNotFoundException {
-		
+
 		Review review = new Review("review1");
 		Tag tagToAdd = new Tag("tag1");
-		
+
 		Collection<Tag> allTags = Arrays.asList(tagToAdd);
 
 		when(reviewRepo.findById(review.getId())).thenReturn(Optional.of(review));
 		when(tagRepo.findByReviewsContains(review)).thenReturn(allTags);
-		
-		
-		underTest.addTag(review.getId(), tagToAdd.getName(), model);
-		verify(model).addAttribute("tagsModel", tagRepo.findByReviewsContains(review)); 
-		
-		
 
-		
-		
-//		Collection<Tag> tags = Arrays.asList(tag);
+		underTest.addTag(review.getId(), tagToAdd.getName(), model);
+		verify(model).addAttribute("tagsModel", tagRepo.findByReviewsContains(review));
+
 	}
-		
+
+	
+	@Test
+	public void shouldAddSingleCommentToReviewModel() throws CommentNotFoundException {
+
+		Review review = new Review("review1");
+		Comment commentToAdd = new Comment("comment1", "comment content");
+
+		Collection<Comment> allComments = Arrays.asList(commentToAdd);
+
+		when(reviewRepo.findById(review.getId())).thenReturn(Optional.of(review));
+		when(commentRepo.findByReviewsContains(review)).thenReturn(allComments);
+
+		underTest.addComment(review.getId(), commentToAdd.getTitle(), commentToAdd.getContent(), model);
+		verify(model).addAttribute("commentsModel", commentRepo.findByReviewsContains(review));
+
 	}
+	
+}
+
 
 
