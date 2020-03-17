@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A List of All Tags</title>
+</head>
+<body>
+    <h1>ALL THE TAAAAGs!!</h1>
+
+    <h2>
+        <section class="beer-list">
+          <ul> 
+              <li th:each="tag: ${tagsModel}"><a th:href="|/tag/${tag.id}|"
+                  th:text="${tag.name}"></a></li>
+          </ul>
+      </section>
+      </h2>
+
+
+
+    <footer>
+        <p><a href="/categories">back to All Categories</a></p>
+        <small>&copy WCCI 2020 - Kelli Valverde</small>
+    </footer>
+</body>
+</html>

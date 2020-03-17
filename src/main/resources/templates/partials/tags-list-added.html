@@ -1,0 +1,16 @@
+<h3>You just added a tag with AJAX!</h3>
+<h3>Here is an updated list of all tags</h3>
+
+		<section class="tags-list">
+
+			<h2>Here is a List of Our Tagss</h2>
+
+			<ul>
+				<li th:if="${tagsModel.size() ==0}">No tags...Add one</li>
+				<li th:if="${tagsModel.size()!=0}" th:each="tag: ${tagsModel}"
+					<a th:href="|/tag/${tag.id}|" th:text="${tag.name}"></a> <!--getTagName-->
+				</li>
+			</ul>
+
+
+		</section>

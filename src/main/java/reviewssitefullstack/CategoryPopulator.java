@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 import reviewssitefullstack.models.Category;
 import reviewssitefullstack.models.Review;
+import reviewssitefullstack.models.Tag;
 import reviewssitefullstack.repositories.CategoryRepository;
 import reviewssitefullstack.repositories.CommentRepository;
 import reviewssitefullstack.repositories.ReviewRepository;
@@ -56,9 +57,46 @@ public class CategoryPopulator implements CommandLineRunner {
 		Category wheatCat = new Category("Wheat Beer Category", "Hazy and Light", wheatBeer);
 		wheatCat = categoryRepo.save(wheatCat);
 		
+		//adding tags
+		Tag coffee = new Tag("Coffee");
+		coffee = tagRepo.save(coffee);
+
+		Tag crisp = new Tag("Crisp");
+		crisp = tagRepo.save(crisp);
+		
+		Tag sweet = new Tag("Sweet");
+		sweet = tagRepo.save(sweet);
+
+		Tag hazy = new Tag("Hazy");
+		hazy = tagRepo.save(hazy);
+
+		Tag hoppy = new Tag("Hoppy");
+		hoppy = tagRepo.save(hoppy);
+		
+		Tag malty = new Tag("Malty");
+		malty = tagRepo.save(malty);
+
+		Tag smokey = new Tag("Smokey");
+		smokey = tagRepo.save(smokey);
+				
+		
+		//specify which tags go to reviews
+		
+		ipaBeer.addTag(hoppy);
+		hoppy.addReview(ipaBeer);
+
+		reviewRepo.save(ipaBeer);
+		tagRepo.save(hoppy);
+		
+		
+		
+		
+		
+		//saving my reviews again		
 		reviewRepo.save(spaceMothBeer);
 		reviewRepo.save(wheatBeer);
 		reviewRepo.save(stoutBeer);
-		reviewRepo.save(ipaBeer);		
+		reviewRepo.save(ipaBeer);	
+		
 	}	
 }

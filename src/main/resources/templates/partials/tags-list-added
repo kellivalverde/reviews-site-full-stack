@@ -1,0 +1,16 @@
+<h3>You just added a topic with AJAX!</h3>
+<h3>Here is an updated list of topics</h3>
+
+		<section class="topics-list">
+
+			<h2>Here is a List of Our Topics</h2>
+
+			<ul>
+				<li th:if="${topicsModel.size() ==0}">No topics...Add one</li>
+				<li th:if="${topicsModel.size()!=0}" th:each="topic: ${topicsModel}"
+					<a th:href="|/topic/${topic.id}|" th:text="${topic.name}"></a> <!--getTopicName-->
+				</li>
+			</ul>
+
+
+		</section>

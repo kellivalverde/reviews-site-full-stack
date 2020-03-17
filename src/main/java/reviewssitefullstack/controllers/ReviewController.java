@@ -85,6 +85,11 @@ public class ReviewController {
 		return "partials/tags-list-added";
 
 	}
+	
+	//get and show all tags and reviews associated --> in my TagsController
+	
+	
+	
 
 	@RequestMapping(path="/review/{id}/comment", method=RequestMethod.POST)  
 	public String addComment(@PathVariable(value ="id")long id, String title, String content, Model model) {
