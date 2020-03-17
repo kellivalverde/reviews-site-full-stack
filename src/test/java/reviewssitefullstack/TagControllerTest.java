@@ -1,3 +1,4 @@
+package reviewssitefullstack;
 
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.verify;
@@ -15,7 +16,9 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.ui.Model;
 
 import reviewssitefullstack.controllers.CategoryController;
+import reviewssitefullstack.controllers.TagController;
 import reviewssitefullstack.exceptions.CategoryNotFoundException;
+import reviewssitefullstack.exceptions.TagNotFoundException;
 import reviewssitefullstack.models.Category;
 import reviewssitefullstack.models.Review;
 import reviewssitefullstack.models.Tag;
@@ -26,7 +29,7 @@ import reviewssitefullstack.repositories.TagRepository;
 
 public class TagControllerTest {
 	@InjectMocks // gives us access to our controller
-	private CategoryController underTest;
+	private TagController underTest;
 
 	// mocking populator
 	@Mock
@@ -55,15 +58,27 @@ public class TagControllerTest {
 
 	
 	
-	
-	
 	@Before
 	public void setUp() {
 		MockitoAnnotations.initMocks(this);
 	}
+	
 	@Test
-	public void test() {
-		fail("Not yet implemented");
+	public void shouldAddSingleTagToModel() throws TagNotFoundException {
+		long arbitraryTagId = 1;
+		when(tagRepo.findById(arbitraryTagId)).thenReturn(Optional.of(tag));
+
+		underTest.findOneTag(arbitraryTagId, model);
+		verify(model).addAttribute("tagModel", tag); 
+	}
+
+	@Test
+	public void shouldAddAllTagsToModel() {
+		Collection<Tag> allTags = Arrays.asList(tag, tag2);
+		when(tagRepo.findAll()).thenReturn(allTags); // methods from CRUD Repo
+
+		underTest.findAllTags(model);
+		verify(model).addAttribute("tagsModel", allTags);
 	}
 
 }
