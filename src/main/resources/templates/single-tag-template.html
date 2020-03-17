@@ -9,6 +9,19 @@
 </head>
 <body>
 
+	<header>
+        <h1><span th:text="${tagModel.name}"></span>: Tags</h1>
+    </header>
     
+    <div class="reviews-in-tag">
+        <ul>
+            <li th:each="review: ${tagModel.reviews}"><a th:href="|/review/${review.id}|"
+                    th:text="${review.title}"></a>
+            </li>
+        </ul>
+        
+    </div>
+
+     
 </body>
 </html>

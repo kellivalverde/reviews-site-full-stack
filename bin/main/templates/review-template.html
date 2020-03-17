@@ -14,11 +14,22 @@
     </header>
 
     <main>
-        <img th:src="${reviewModel.imageUrl}">
+       <img th:src="${reviewModel.imageUrl}">
        <div class="details">
-        <p th:text="${reviewModel.content}"></p>
-        <p th:text="${reviewModel.date}"></p>
-       </div>
+         <p th:text="${reviewModel.content}"></p>
+         <p th:text="${reviewModel.date}"></p>
+        </div>
+
+        <div class="tags-in-review">
+            <ul>
+                <li th:each="tag: ${reviewModel.tags}"><a th:href="|/tag/${tag.id}|"
+                        th:text="${tag.name}"></a>
+                </li>
+            </ul>
+			
+        </div>
+
+
     </main>
 
     <footer>

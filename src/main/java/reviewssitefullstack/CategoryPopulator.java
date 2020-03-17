@@ -89,14 +89,24 @@ public class CategoryPopulator implements CommandLineRunner {
 		tagRepo.save(hoppy);
 		
 		
-		
-		
-		
-		//saving my reviews again		
-		reviewRepo.save(spaceMothBeer);
-		reviewRepo.save(wheatBeer);
+		stoutBeer.addTag(coffee);
+		coffee.addReview(stoutBeer);
+		stoutBeer.addTag(sweet);
+		sweet.addReview(stoutBeer);
+
 		reviewRepo.save(stoutBeer);
-		reviewRepo.save(ipaBeer);	
+		tagRepo.save(coffee);
+		tagRepo.save(sweet);
+		
+		wheatBeer.addTag(hazy);
+		hazy.addReview(wheatBeer);
+				
+				
+		//saving my reviews again		
+//		reviewRepo.save(spaceMothBeer);
+//		reviewRepo.save(wheatBeer);
+//		reviewRepo.save(stoutBeer);
+//		reviewRepo.save(ipaBeer);	
 		
 	}	
 }
