@@ -19,12 +19,12 @@
     <main>
      
         <section class="beer-list">
-        <h2>
-            <ul> 
-                <li th:each="review: ${categoryModel.reviews}"><a th:href="|/review/${review.id}|"
-                    th:text="${review.title}"></a></li>
-            </ul>
-        </h2>
+            <h2>
+                <ul> 
+                    <li th:each="review: ${categoryModel.reviews}"><a th:href="|/review/${review.id}|"
+                        th:text="${review.title}"></a></li>
+                </ul>
+            </h2>
         </section>
     </main>
 

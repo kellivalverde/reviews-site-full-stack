@@ -101,6 +101,7 @@ public class CategoryPopulator implements CommandLineRunner {
 		wheatBeer.addTag(hazy);
 		hazy.addReview(wheatBeer);
 				
+		
 				
 		//saving my reviews again		
 //		reviewRepo.save(spaceMothBeer);
