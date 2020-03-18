@@ -19,6 +19,7 @@
          <p th:text="${reviewModel.content}"></p>
          <p th:text="${reviewModel.date}"></p>
         </div>
+
 		<section class="beer-list">
 	        <div class="tags-in-review">
 	            <ul><h2>Tags for this beer:</h2>
@@ -26,9 +27,27 @@
 	                        th:text="${tag.name}"></a>
 	                </li>
 	            </ul>
-				
-	        </div>
+			</div>
 		</section>
+
+        <section class="comments">
+            <h2>Add a Comment</h2>
+            <form method="POST"></form>
+                <div>
+                    <label> Title: </label>
+                    <input type="text" name="title" />
+                </div>
+                
+                <div>
+                    <label> Content: </label>
+                    <textarea id="content" type="text "rows="2" cols="4" placeholder="write a comment..."></textarea>
+                </div>
+                
+                <div>
+                    <button type="submit" th:formaction="@{add-comment}">Done</button>
+                </div>
+
+        </section>
 
     </main>
 
