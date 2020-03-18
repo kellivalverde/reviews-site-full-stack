@@ -51,8 +51,10 @@
         </section>
         <section>
             <ul><h2>Comments for this beer:</h2>
-                <li th:each="comment: ${reviewModel.comments}"><a th:href="|/comment/${comment.id}|"
-                        th:text="${comment.title}"></a>
+                <li th:each="comment: ${reviewModel.comments}">
+                    <h3 th:text="${comment.title}"></h3>
+                    <p th:text="${comment.content}"></p>
+
                 </li>
             </ul>
 
