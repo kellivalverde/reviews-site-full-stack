@@ -92,17 +92,18 @@ public class ReviewController {
 	
 
 	@RequestMapping(path="/review/{id}/comment", method=RequestMethod.POST)  
-	public String addComment(@PathVariable(value ="id")long id, String title, String content, Model model) {
+	public String addComment(@PathVariable(value = "id")long id, String title, String content, Model model) {
 		Optional<Review> review = reviewRepo.findById(id);
 		
-		Comment commentToAdd = new Comment();
+		Comment commentToAdd = new Comment(title, content); //getting values from user - via POST
 		
 		review.get().addComment(commentToAdd);
+		
 		
 		reviewRepo.save(review.get());
 		commentRepo.save(commentToAdd);
 		
-		model.addAttribute("commentsModel", commentRepo.findByReviewContains(review.get()));
+		//model.addAttribute("commentsModel", commentRepo.findByReviewContains(review.get()));
 	
 	
 		return "redirect:/review/{id}";

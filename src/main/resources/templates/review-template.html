@@ -32,22 +32,33 @@
 
         <section class="comments">
             <h2>Add a Comment</h2>
-            <form method="POST"></form>
+            <form method="POST">
                 <div>
-                    <label> Title: </label>
+                    <label>Title:</label>
                     <input type="text" name="title" />
                 </div>
                 
                 <div>
-                    <label> Content: </label>
-                    <textarea id="content" type="text "rows="2" cols="4" placeholder="write a comment..."></textarea>
-                </div>
+                    <label>Content:</label>
+                    <textarea name="content" type="text "rows="2" cols="4" placeholder="write a comment..."></textarea>
+                </div> <!--set min width and padding in css-->
                 
                 <div>
-                    <button type="submit" th:formaction="@{add-comment}">Done</button>
+                    <button type="submit" th:formaction="|/review/${reviewModel.id}/comment|">Done</button>
                 </div>
+            </form>
+            
+        </section>
+        <section>
+            <ul><h2>Comments for this beer:</h2>
+                <li th:each="comment: ${reviewModel.comments}"><a th:href="|/comment/${comment.id}|"
+                        th:text="${comment.title}"></a>
+                </li>
+            </ul>
+
 
         </section>
+
 
     </main>
 
